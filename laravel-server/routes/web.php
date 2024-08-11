@@ -3,9 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-});
+
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/login', function () {
@@ -19,3 +17,24 @@ Route::group(['prefix' => 'auth'], function () {
     });
 });
 
+
+Route::get('/', function () {
+    return Inertia::render('Dashboard');
+});
+
+Route::get('/admins', function () {
+    return Inertia::render('admin/Index');
+});
+
+Route::get('/admin/create', function () {
+    return Inertia::render('admin/Create');
+});
+
+
+Route::get('/roles', function () {
+    return Inertia::render('roles/Index');
+});
+
+Route::get('/role/create', function () {
+    return Inertia::render('roles/Create');
+});

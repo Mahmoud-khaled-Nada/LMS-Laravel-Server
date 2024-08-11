@@ -45,6 +45,7 @@ function SidebarSubmenu({ route }: any) {
                             className="px-2 py-1 transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200"
                             key={r.name}
                         >
+                            <span className="w-5 h-5">{r.icon}</span>
                             <Link className="w-full" href={r.path}>
                                 {r.name}
                             </Link>

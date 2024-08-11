@@ -18,13 +18,13 @@ import {
 } from "@windmill/react-ui";
 
 import response from "./tableData";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import InfoCard from "@/components/ui/card/InfoCard";
 import RoundIcon from "@/components/ui/icons/RoundIcon";
 import { MdEdit } from "react-icons/md";
 import { BiTrash } from "react-icons/bi";
-import MainForm from "@/components/ui/Forms/MainForm";
-import Toolbar from "@/components/ui/Toolbar";
+import Toolbar from "@/components/ui/toolbar/Toolbar";
+
 function Dashboard() {
     const { t, i18n } = useTranslation();
     const [page, setPage] = useState(1);
@@ -35,21 +35,21 @@ function Dashboard() {
     const totalResults = response.length;
 
     // pagination change control
-    function onPageChange(p) {
+    function onPageChange(p: SetStateAction<number>) {
         setPage(p);
     }
-
     useEffect(() => {
         setData(
-            response.slice((page - 1) * resultsPerPage, page * resultsPerPage)
+            response.slice(
+                (page - 1) * resultsPerPage,
+                page * resultsPerPage
+            ) as any
         );
     }, [page]);
 
     return (
         <MainLayout>
-            <Toolbar />
-
-            <MainForm />
+            <Toolbar routeCreate="auth/login" currentPage={t("dashboard")} />
 
             <div className="grid gap-6 mb-8 md:grid-cols-2 xl:grid-cols-4">
                 <InfoCard title={t("dashboard")} value="6389">
