@@ -1,32 +1,68 @@
 import { FaTwitter, FaGithub } from "react-icons/fa";
 import { Label, Input, Button } from "@windmill/react-ui";
-import { Link } from "@inertiajs/react";
+import { Link, router, useForm } from "@inertiajs/react";
+import { FormContainer } from "../ui/forms/FormContainer";
+import { FormEventHandler } from "react";
+import { useTranslation } from "react-i18next";
+import InputField from "../ui/input/InputField";
+import { toast } from "react-toastify";
+import { Spinners } from "../ui/icons/Spinners";
 
+type LoginParams = {
+    email: string;
+    password: string;
+};
 function LoginFrom() {
+    const { t } = useTranslation();
+    const { data, setData, post, processing, errors, reset } = useForm<LoginParams>();
+    const submit: FormEventHandler = (e) => {
+        e.preventDefault();
+        post("/login", {
+            onSuccess: (res) => {
+                console.log(res);
+                router.get("/dashboard");
+            },
+            onError: (err) => {
+                console.log(err);
+                toast.error("Error Login Failed");
+            },
+            onFinish: () => reset("email", "password"),
+        });
+    };
+
     return (
-        <div className="w-full">
-            <h1 className="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                Login
-            </h1>
-            <Label>
-                <span>Email</span>
-                <Input
-                    className="mt-1"
+        <FormContainer title={t("login")} submit={submit}>
+            <Label className="mt-4">
+                <span>{t("email")}</span>
+                <InputField
                     type="email"
-                    placeholder="john@doe.com"
+                    name="email"
+                    value={data.email}
+                    isFocused={true}
+                    isError={errors.email}
+                    onChange={(e) => setData("email", e.target.value)}
                 />
             </Label>
 
             <Label className="mt-4">
-                <span>Password</span>
-                <Input
-                    className="mt-1"
+                <span>{t("password")}</span>
+                <InputField
                     type="password"
-                    placeholder="***************"
+                    name="password"
+                    value={data.password}
+                    isFocused={true}
+                    isError={errors.password}
+                    onChange={(e) => setData("password", e.target.value)}
                 />
             </Label>
 
-            <Button className="mt-4" block tag={Link} to="/app">
+            <Button
+                type="submit"
+                className="mt-4"
+                block
+                iconRight={processing ? Spinners : ""}
+                disabled={!data.email || !data.password}
+            >
                 Log in
             </Button>
 
@@ -57,7 +93,7 @@ function LoginFrom() {
                     Create account
                 </Link>
             </p>
-        </div>
+        </FormContainer>
     );
 }
 

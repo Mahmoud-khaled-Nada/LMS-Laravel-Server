@@ -49,10 +49,6 @@ function Header() {
                             className="pl-8 text-gray-700"
                             placeholder="Search for projects"
                             aria-label="Search"
-                            onPointerEnterCapture={undefined}
-                            onPointerLeaveCapture={undefined}
-                            css={undefined}
-                            crossOrigin={undefined}
                         />
                     </div>
                 </div>

@@ -9,20 +9,21 @@ import { toast } from "react-toastify";
 import { SpinnerButton } from "../ui/buttons/SpinnerButton";
 import { AdminParams } from "@/types";
 
-
-function AdminFormCreate() {
+function AdminFormEdit({ adminData }: any) {
     const { t } = useTranslation();
     const { roles } = usePage().props as any;
-    const { data, setData, post, processing, errors, reset } = useForm<AdminParams>();
+    const { data, setData, put, processing, errors, reset } =
+        useForm<AdminParams>(adminData);
 
     const submit: FormEventHandler = (e) => {
+        if (!adminData.id) return;
         e.preventDefault();
-        post("/admins/store", {
+        put(`/admins/update/${adminData.id}`, {
             onSuccess: () => {
-                toast.success("Admin created successfully");
+                toast.success("Admin updated successfully");
                 router.get("/admins");
             },
-            onError: () => toast.error("Error creating admin"),
+            onError: () => toast.error("Error updating admin"),
             onFinish: () => reset("name", "email", "password", "role_id"),
         });
     };
@@ -87,4 +88,4 @@ function AdminFormCreate() {
     );
 }
 
-export default AdminFormCreate;
+export default AdminFormEdit;

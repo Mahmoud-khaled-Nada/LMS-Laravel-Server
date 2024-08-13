@@ -1,14 +1,16 @@
+import { AdminTableDetales } from "@/components/admin/AdminTableDetales";
 import Toolbar from "@/components/ui/toolbar/Toolbar";
 import { MainLayout } from "@/Layouts/MainLayout";
+import { usePage } from "@inertiajs/react";
 import { useTranslation } from "react-i18next";
-import AdminTable from "./Table";
 
 function AdminIndex() {
     const { t } = useTranslation();
+    const { admins } = usePage<any>().props;
     return (
         <MainLayout>
-            <Toolbar routeCreate="admin/create" currentPage={t("admins")} />
-            <AdminTable />
+            <Toolbar routeCreate="admins/create" currentPage={t("admins")} />
+            <AdminTableDetales admins={admins} />
         </MainLayout>
     );
 }

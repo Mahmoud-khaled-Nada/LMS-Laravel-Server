@@ -5,6 +5,7 @@ import { createInertiaApp } from "@inertiajs/react"; // Import Inertia React int
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers"; // Resolve Inertia page components
 import { ToastContainer } from "react-toastify"; // Import Toastify for notifications
 import "react-toastify/dist/ReactToastify.css"; // Import Toastify styles
+import "animate.css";
 import '../css/tailwind.output.css'
 import "./i18n";
 import { SidebarProvider } from "./utils/context/SidebarContext";

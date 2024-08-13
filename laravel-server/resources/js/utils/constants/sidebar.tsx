@@ -3,6 +3,7 @@ import { TiHomeOutline } from "react-icons/ti";
 import { SiPowerpages } from "react-icons/si";
 import { RiAdminLine } from "react-icons/ri";
 import { FaUnlockKeyhole } from "react-icons/fa6";
+import { BiCategory } from "react-icons/bi";
 
 // import { useTranslation } from "react-i18next";
 // const { t } = useTranslation();
@@ -23,9 +24,9 @@ export const routes: RoutesType = [
         name: "roles",
     },
     {
-        path: "/app/charts",
-        icon: <TiHomeOutline className="w-6 h-4" />,
-        name: "Charts",
+        path: "/categories",
+        icon: <BiCategory className="w-6 h-4" />,
+        name: "Categories",
     },
     {
         path: "/app/buttons",

@@ -1,32 +1,27 @@
 import { Label } from "@windmill/react-ui";
 import { FormContainer } from "../ui/forms/FormContainer";
 import InputField from "../ui/input/InputField";
-import { useForm } from "@inertiajs/react";
+import { router, useForm, usePage } from "@inertiajs/react";
 import { useTranslation } from "react-i18next";
 import { FormEventHandler } from "react";
-import { SpinnerButton } from "../ui/buttons/SpinnerButton";
 import { toast } from "react-toastify";
+import { SpinnerButton } from "../ui/buttons/SpinnerButton";
+import { CategoryParams } from "@/types";
 
-function RoleFormCreate() {
+function CategoryFormEdit({ categoryData }: any) {
     const { t } = useTranslation();
-    const { data, setData, post, processing, errors, reset } = useForm({
-        name: "",
-        permissions: ["1", "2", "3", "4"], // Static permissions array
-    });
-
+    const { data, setData, put, processing, errors, reset } =
+        useForm<CategoryParams>(categoryData);
     const submit: FormEventHandler = (e) => {
+        if (!categoryData.id) return;
         e.preventDefault();
-        post("/role/store", {
-            data,
+        put(`/categories/update/${categoryData.id}`, {
             onSuccess: () => {
-                reset("name");
-                toast.success("Role created successfully");
+                router.get("/categories");
+                toast.success("Category updated successfully");
             },
-            onError: (error) => {
-                console.error(error);
-                toast.error("Error creating role");
-            },
-            onFinish: () => reset("name"),
+            onError: () => toast.error("Error updating category"),
+            onFinish: () => reset("category"),
         });
     };
 
@@ -34,21 +29,21 @@ function RoleFormCreate() {
         <FormContainer title={t("create")} submit={submit}>
             <div className="flex flex-col items-center">
                 <Label className="w-full max-w-[50%]">
-                    <span>{t("roleName")}</span>
+                    <span>{t("category")}</span>
                     <InputField
-                        name="name"
-                        value={data.name}
+                        name="category"
+                        value={data.category}
                         isFocused={true}
-                        isError={errors.name}
-                        onChange={(e) => setData("name", e.target.value)}
+                        isError={errors.category}
+                        onChange={(e) => setData("category", e.target.value)}
                     />
                 </Label>
                 {/* Buttons */}
                 <div className="flex justify-center items-center m-6 gap-3 w-full max-w-[50%]">
                     <SpinnerButton
                         isLoading={processing}
-                        disabled={!data.name || processing}
-                        route="/roles"
+                        disabled={!data.category || processing}
+                        route="/categories"
                     />
                 </div>
             </div>
@@ -56,4 +51,4 @@ function RoleFormCreate() {
     );
 }
 
-export default RoleFormCreate;
+export default CategoryFormEdit;

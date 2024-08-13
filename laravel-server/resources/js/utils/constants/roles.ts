@@ -1,4 +1,4 @@
-const permessions = ["view", "new", "update", "delete"];
+const permissions = ["view", "new", "update", "delete"];
 const pages = [
     "employees",
     "customers",
@@ -16,4 +16,4 @@ const pages = [
     "inquiries",
 ];
 
-export { permessions, pages };
+export { permissions, pages };

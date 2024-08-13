@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { MdOutlineDone } from "react-icons/md";
 type Option = {
-    value: string;
-    label: string;
+    id: string;
+    name: string;
     icon?: string;
 };
 
@@ -29,7 +29,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
         setIsOpen(false);
     };
 
-    const selectedOption = options.find((opt) => opt.value === selectedValue);
+    const selectedOption = options.find((opt) => opt.id === selectedValue);
 
     return (
         <div className="relative">
@@ -47,7 +47,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                                 className="w-5 h-5 rounded-full mr-2"
                             />
                         )}
-                        {selectedOption.label}
+                        {selectedOption.name}
                     </div>
                 ) : (
                     placeholder
@@ -59,10 +59,10 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                 <div className="absolute mt-2 z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg shadow-lg overflow-y-auto dark:bg-neutral-900 dark:border-neutral-700">
                     {options.map((opt) => (
                         <div
-                            key={opt.value}
-                            onClick={() => handleOptionClick(opt.value)}
+                            key={opt.id}
+                            onClick={() => handleOptionClick(opt.id)}
                             className={`py-2 px-4 text-sm cursor-pointer rounded-lg flex items-center ${
-                                selectedValue === opt.value
+                                selectedValue === opt.id
                                     ? "bg-gray-100 dark:bg-neutral-800"
                                     : "hover:bg-gray-100 dark:hover:bg-neutral-800"
                             } dark:text-neutral-200`}
@@ -74,8 +74,8 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                                     className="w-5 h-5 rounded-full mr-2"
                                 />
                             )}
-                            <span>{opt.label}</span>
-                            {selectedValue === opt.value && (
+                            <span>{opt.name}</span>
+                            {selectedValue === opt.id && (
                                 <MdOutlineDone className="w-5 h-5 ml-auto text-blue-600 dark:text-blue-500" />
                             )}
                         </div>
@@ -87,7 +87,6 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
 };
 
 export default SingleSelect;
-
 
 // call
 
@@ -101,6 +100,5 @@ export default SingleSelect;
 // const handleSelectionChanges = (selectedValue: string) => {
 //     console.log('Selected value:', selectedValue);
 // };
-
 
 //     <SingleSelect options={optionss} placeholder="Select an option..." onChange={handleSelectionChanges} />
