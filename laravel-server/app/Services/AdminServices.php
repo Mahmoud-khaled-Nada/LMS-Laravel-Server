@@ -3,33 +3,31 @@
 namespace App\Services;
 
 use App\Models\User;
-use Spatie\Permission\Models\Role;
 use App\Utils\Transformers\AdminTransformer;
 
 final class AdminServices
 {
-    private $adminWithRoles;
+    private $items;
 
     public function __construct(protected AdminTransformer $adminTransformer)
     {
-        $this->adminWithRoles = collect([]);
+        $this->items = collect([]);
     }
 
-    public function getAdminsWithRoles(): array
+    public function get(): array
     {
-        if ($this->adminWithRoles->isEmpty())
-            $this->adminWithRoles = User::where('id', '!=', 1)->with('roles')->get();
+        if ($this->items->isEmpty())
+            $this->items = User::where('id', '!=', 1)->get();
 
-        return $this->adminTransformer->transformCollection($this->adminWithRoles);
+        return $this->adminTransformer->transformCollection($this->items);
     }
 
-    public function setAdminWithRoles(object $request): void
+    public function add(object $request): void
     {
-        $admin = User::create($request->input());
-        $admin->assignRole($request->input('role_id'));
+       User::create($request->input());
     }
 
-    public function updateAdminWithRoles(object $request, string $adminId): void
+    public function updateAdmin(object $request, string $adminId): void
     {
         $admin = User::findOrFail($adminId);
 
@@ -38,7 +36,6 @@ final class AdminServices
         $request['password'] = $request->input('password', $admin->password);
 
         $admin->update($request->only(['name', 'email', 'password']));
-        $admin->syncRoles($request->input('role_id', []));
     }
 
     public function deleteAdminById(string $adminId): void

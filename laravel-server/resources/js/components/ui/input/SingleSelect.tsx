@@ -13,11 +13,7 @@ type SingleSelectProps = {
     onChange: (selectedValue: string) => void;
 };
 
-const SingleSelect: React.FC<SingleSelectProps> = ({
-    options,
-    placeholder,
-    onChange,
-}) => {
+const SingleSelect: React.FC<SingleSelectProps> = ({options,placeholder,onChange}) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
 
@@ -29,7 +25,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
         setIsOpen(false);
     };
 
-    const selectedOption = options.find((opt) => opt.id === selectedValue);
+    const selectedOption = options.find((opt) => opt.name === selectedValue);
 
     return (
         <div className="relative">
@@ -57,12 +53,12 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
 
             {isOpen && (
                 <div className="absolute mt-2 z-50 w-full max-h-72 p-1 bg-white border border-gray-200 rounded-lg shadow-lg overflow-y-auto dark:bg-neutral-900 dark:border-neutral-700">
-                    {options.map((opt) => (
+                    {options.map((opt, index) => (
                         <div
-                            key={opt.id}
-                            onClick={() => handleOptionClick(opt.id)}
+                            key={index}
+                            onClick={() => handleOptionClick(opt.name)}
                             className={`py-2 px-4 text-sm cursor-pointer rounded-lg flex items-center ${
-                                selectedValue === opt.id
+                                selectedValue === opt.name
                                     ? "bg-gray-100 dark:bg-neutral-800"
                                     : "hover:bg-gray-100 dark:hover:bg-neutral-800"
                             } dark:text-neutral-200`}
@@ -75,7 +71,7 @@ const SingleSelect: React.FC<SingleSelectProps> = ({
                                 />
                             )}
                             <span>{opt.name}</span>
-                            {selectedValue === opt.id && (
+                            {selectedValue === opt.name && (
                                 <MdOutlineDone className="w-5 h-5 ml-auto text-blue-600 dark:text-blue-500" />
                             )}
                         </div>

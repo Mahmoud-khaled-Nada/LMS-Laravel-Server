@@ -14,7 +14,7 @@ final class AdminTransformer
             "id" => $user->id,
             "name" => $user->name,
             "email" => $user->email,
-            "roles" => $user->roles->pluck('name'),
+            "role" => $user->role,
             "created_at" => $user->updated_at->diffForHumans(),
         ];
     }

@@ -33,8 +33,7 @@ export const CategoryTableDetales: React.FC<CategoryProps> = ({
         if (!categoryId) return;
 
         post(`/categories/delete/${categoryId}`, {
-            onSuccess: (res) => {
-                console.log(res);
+            onSuccess: ({props}) => {
                 toast.success(t("Category deleted successfully"));
                 setIsModalOpen(false);
             },

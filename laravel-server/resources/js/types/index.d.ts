@@ -5,7 +5,7 @@ export interface User {
     email: string;
     email_verified_at?: string;
     permissions?: string[];
-    roles?: Role[];
+    role: string;
     created_at?: string;
 }
 
@@ -40,7 +40,7 @@ export type AdminParams = {
     name: string;
     email: string;
     password: string;
-    role_id: string;
+    role: string;
 };
 
 export type CategoryParams = {

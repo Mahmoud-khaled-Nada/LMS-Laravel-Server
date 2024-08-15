@@ -19,8 +19,7 @@ function LoginFrom() {
         e.preventDefault();
         post("/login", {
             onSuccess: (res) => {
-                console.log(res);
-                router.get("/dashboard");
+                router.get("/");
             },
             onError: (err) => {
                 console.log(err);

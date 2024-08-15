@@ -24,7 +24,7 @@ function AdminFormEdit({ adminData }: any) {
                 router.get("/admins");
             },
             onError: () => toast.error("Error updating admin"),
-            onFinish: () => reset("name", "email", "password", "role_id"),
+            onFinish: () => reset("name", "email", "password", "role"),
         });
     };
 
@@ -61,7 +61,7 @@ function AdminFormEdit({ adminData }: any) {
                         options={roles}
                         placeholder="Select an option..."
                         onChange={(value) =>
-                            setData("role_id", value.toString())
+                            setData("role", value.toString())
                         }
                     />
                 </Label>

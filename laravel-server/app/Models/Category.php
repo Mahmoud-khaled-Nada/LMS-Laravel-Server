@@ -14,6 +14,10 @@ class Category extends Model
     /**
      * To implement the foreign is to by use foreignUlid('category_id')->index()->constrained()->cascatOnDelete()
      * */
+    protected $fillable = ['category'];
 
-     protected $fillable = ['category'];
+    public function courses()
+    {
+        return $this->hasMany(Course::class);
+    }
 }

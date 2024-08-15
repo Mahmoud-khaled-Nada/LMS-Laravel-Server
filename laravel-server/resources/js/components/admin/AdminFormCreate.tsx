@@ -4,26 +4,26 @@ import InputField from "../ui/input/InputField";
 import { router, useForm, usePage } from "@inertiajs/react";
 import { useTranslation } from "react-i18next";
 import { FormEventHandler } from "react";
-import SingleSelect from "../ui/input/SingleSelect";
 import { toast } from "react-toastify";
 import { SpinnerButton } from "../ui/buttons/SpinnerButton";
 import { AdminParams } from "@/types";
-
+import SingleSelect from "../ui/input/SingleSelect";
 
 function AdminFormCreate() {
     const { t } = useTranslation();
     const { roles } = usePage().props as any;
-    const { data, setData, post, processing, errors, reset } = useForm<AdminParams>();
+    const { data, setData, post, processing, errors, reset } =
+        useForm<AdminParams>();
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
         post("/admins/store", {
             onSuccess: () => {
-                toast.success("Admin created successfully");
                 router.get("/admins");
+                toast.success("Admin created successfully");
             },
             onError: () => toast.error("Error creating admin"),
-            onFinish: () => reset("name", "email", "password", "role_id"),
+            onFinish: () => reset("name", "email", "password", "role"),
         });
     };
 
@@ -59,9 +59,7 @@ function AdminFormCreate() {
                     <SingleSelect
                         options={roles}
                         placeholder="Select an option..."
-                        onChange={(value) =>
-                            setData("role_id", value.toString())
-                        }
+                        onChange={(value) => setData("role", value)}
                     />
                 </Label>
                 <Label className="mt-4">

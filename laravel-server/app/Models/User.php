@@ -5,19 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use HasFactory;
     use Notifiable;
-    use HasRoles;
 
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    protected $fillable = ['name', 'email', 'role', 'password'];
 
     protected $hidden = [
         'password',
@@ -37,6 +31,6 @@ class User extends Authenticatable
         'name' => 'required|string|unique:users,name',
         'email' => 'required|email|unique:users,email',
         'password' => 'required|min:3',
-        'role_id' => 'required|exists:roles,id|not_in:1',
+        'role' => 'required',
     ];
 }

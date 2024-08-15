@@ -7,7 +7,6 @@ import { useTranslation } from "react-i18next";
 function CategoryIndex() {
     const { t } = useTranslation();
     const { categories } = usePage<any>().props;
-    console.log(categories);
     return (
         <MainLayout>
             <Toolbar

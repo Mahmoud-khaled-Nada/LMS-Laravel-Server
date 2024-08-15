@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Http\Controllers\DashboardController;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 
-class AuthController extends Controller
+class AuthController extends DashboardController
 {
     public function login(): Response
     {
         return Inertia::render('auth/Login');
     }
 
-    public function postLogin(Request $request)
+    public function postLogin(Request $request): RedirectResponse
     {
         $credentials = $request->only('email', 'password');
 
@@ -25,9 +26,9 @@ class AuthController extends Controller
         }
     }
 
-    public function logout()
+    public function logout(): RedirectResponse
     {
         auth('web')->logout();
-        return redirect("/");
+        return back();
     }
 }

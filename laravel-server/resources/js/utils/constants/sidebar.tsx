@@ -19,11 +19,6 @@ export const routes: RoutesType = [
         name: "Admins",
     },
     {
-        path: "/roles",
-        icon: <FaUnlockKeyhole className="w-6 h-4" />,
-        name: "roles",
-    },
-    {
         path: "/categories",
         icon: <BiCategory className="w-6 h-4" />,
         name: "Categories",
@@ -48,19 +43,19 @@ export const routes: RoutesType = [
         name: "Pages",
         routes: [
             {
-                path: "/auth/login",
+                path: "/login",
                 name: "Login",
             },
             {
-                path: "/auth/register",
+                path: "/register",
                 name: "Create account",
             },
             {
-                path: "/auth/forgot-password",
+                path: "/forgot-password",
                 name: "Forgot password",
             },
             {
-                path: "/app/404",
+                path: "/404",
                 name: "404",
             },
         ],

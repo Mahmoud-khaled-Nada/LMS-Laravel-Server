@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Http\Controllers\Controller;
-use App\Services\CategoryServices;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use Illuminate\Http\Request;
+use App\Services\CategoryServices;
+use Illuminate\Http\RedirectResponse;
+use App\Http\Controllers\DashboardController;
+use App\Models\Category;
 
-class CategoryController extends Controller
+class CategoryController extends DashboardController
 {
     public function __construct(
         protected readonly CategoryServices $categoryServices,
@@ -27,14 +28,16 @@ class CategoryController extends Controller
         return Inertia::render('categories/Create');
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $data = $request->validate(['category' => 'required|string|min:3|max:250']);
         try {
             $this->categoryServices->add($data);
-            return back();
+            return $this->respondWithSuccess([
+                'message' => 'Category created successfully',
+            ]);
         } catch (\Exception $ex) {
-            return back()->withError($ex);
+            return $this->respondWithError('error', 'Error creating category');
         }
     }
 
@@ -43,7 +46,6 @@ class CategoryController extends Controller
         $category =  $this->categoryServices->findById($categoryId);
         return Inertia::render('categories/Edit', compact('category'));
     }
-
 
     public function update(Request $request, string $id): RedirectResponse
     {
@@ -55,7 +57,6 @@ class CategoryController extends Controller
             return back()->withError($ex->getMessage());
         }
     }
-
 
     public function destroy($categoryId): RedirectResponse
     {

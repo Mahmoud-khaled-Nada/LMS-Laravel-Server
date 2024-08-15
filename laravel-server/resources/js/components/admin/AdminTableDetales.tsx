@@ -63,9 +63,7 @@ export const AdminTableDetales: React.FC<AdminTableDetailsProps> = ({
                             </TableCell>
                             <TableCell>{row.email}</TableCell>
                             <TableCell>
-                                {row.roles.length
-                                    ? row.roles.join(", ")
-                                    : t("No roles")}
+                                {row.role}
                             </TableCell>
                             <TableCell>{row.created_at}</TableCell>
                             <TableCell>

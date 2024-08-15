@@ -27,8 +27,7 @@ class HandleInertiaRequests extends Middleware
                 // 'permissions' => $user->getAllPermissions()->pluck('name')
             ],
             'locale' => app()->getLocale(),
-            // 'translations' => $translations,
+            'responseStatus' => fn() => $request->session()->get('message'),
         ];
-
     }
 }
