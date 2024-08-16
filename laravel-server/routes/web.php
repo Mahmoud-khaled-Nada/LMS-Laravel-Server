@@ -7,61 +7,65 @@ use App\Http\Controllers\Dashboard\Admin\AuthController;
 use App\Http\Controllers\Dashboard\CategoryController;
 
 Route::group(['prefix' => 'auth'], function () {
-    Route::get('/login', function () {
-        return Inertia::render('auth/Login');
-    });
-    Route::get('/register', function () {
-        return Inertia::render('auth/Register');
-    });
-    Route::get('/forgot-password', function () {
-        return Inertia::render('auth/ForgotPassword');
-    });
+    Route::get('/login', fn() => Inertia::render('auth/Login'));
+    Route::get('/register', fn() =>  Inertia::render('auth/Register'));
+    Route::get('/forgot-password', fn() => Inertia::render('auth/ForgotPassword'));
 });
 
 
 
 
-Route::middleware(['guest'])->group(function () {
-    Route::get('/login', [AuthController::class, 'login'])->name('auth.login');
-    Route::post('/login', [AuthController::class, 'postLogin'])->name('post.login');
-});
+Route::controller(AuthController::class)
+    ->middleware('guest')
+    ->group(static function (): void {
+        Route::get('/login', 'login')->name('auth.login');
+        Route::post('/login', 'postLogin')->name('post.login');
+    });
 
-Route::middleware(['auth'])->group(function () {
+
+
+Route::middleware('auth')->group(static function (): void {
 
     Route::get('/', fn() => Inertia::render('Dashboard'));
-
     Route::get('/profile', fn() => Inertia::render('Profile'));
     Route::get('/messages', fn() => Inertia::render('Messages'));
 
-    //
-
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::group(['prefix' => 'admins'], function () {
-        Route::get('', [AdminController::class, 'index']);
-        Route::get('create', [AdminController::class, 'create']);
-        Route::post('store', [AdminController::class, 'store']);
-        Route::get('edit/{id}', [AdminController::class, 'edit']);
-        Route::put('update/{id}', [AdminController::class, 'update']);
-        Route::post('delete/{id}', [AdminController::class, 'destroy']);
-    });
+    Route::controller(AdminController::class)
+        ->prefix('admins')
+        ->as('admins:')
+        ->group(static function (): void {
+            Route::get('', 'index');
+            Route::get('create', 'create');
+            Route::post('store', 'store');
+            Route::get('edit/{id}', 'edit');
+            Route::put('update/{id}', 'update');
+            Route::post('delete/{id}', 'destroy');
+        });
 
-    Route::prefix('categories')->as('categories:')->group(static function (): void {
-        Route::get('', [CategoryController::class, 'index']);
-        Route::get('create', [CategoryController::class, 'create']);
-        Route::post('store', [CategoryController::class, 'store']);
-        Route::get('edit/{ulid}', [CategoryController::class, 'edit']);
-        Route::put('update/{ulid}', [CategoryController::class, 'update']);
-        Route::post('delete/{ulid}', [CategoryController::class, 'destroy']);
-    });
+    Route::controller(CategoryController::class)
+        ->prefix('categories')
+        ->as('categories:')
+        ->group(static function (): void {
+            Route::get('',  'index');
+            Route::get('create', 'create');
+            Route::post('store', 'store');
+            Route::get('edit/{ulid}', 'edit');
+            Route::put('update/{ulid}', 'update');
+            Route::post('delete/{ulid}', 'destroy');
+        });
 
-    //TODO: implement this method for 
-    Route::prefix('categories')->as('categories:')->group(static function (): void {
-        Route::get('', [CategoryController::class, 'index']);
-        Route::get('create', [CategoryController::class, 'create']);
-        Route::post('store', [CategoryController::class, 'store']);
-        Route::get('edit/{ulid}', [CategoryController::class, 'edit']);
-        Route::put('update/{ulid}', [CategoryController::class, 'update']);
-        Route::post('delete/{ulid}', [CategoryController::class, 'destroy']);
-    });
+
+    Route::controller(CategoryController::class)
+        ->prefix('categories')
+        ->as('categories:')
+        ->group(static function (): void {
+            // Route::get('',  'index');
+            // Route::get('create', 'create');
+            // Route::post('store', 'store');
+            // Route::get('edit/{ulid}', 'edit');
+            // Route::put('update/{ulid}', 'update');
+            // Route::post('delete/{ulid}', 'destroy');
+        });
 });

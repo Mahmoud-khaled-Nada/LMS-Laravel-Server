@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use App\Services\CategoryServices;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Controllers\DashboardController;
-use App\Models\Category;
 
 class CategoryController extends DashboardController
 {
