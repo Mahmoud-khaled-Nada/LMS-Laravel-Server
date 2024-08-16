@@ -1,0 +1,118 @@
+.coursebutton::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  display: block;
+  left: 0;
+  background: #d3aa5c;
+  transition: width 0.3s ease;
+}
+
+.coursebutton:hover::after {
+  width: 100%;
+}
+
+.js-top-desti-prev_active2,
+.js-top-desti-next_active2 {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+}
+
+.js-top-desti-prev_active2 {
+  left: -60px;
+}
+
+.js-top-desti-next_active2 {
+  right: -60px;
+}
+
+.secsection {
+  width: "80%";
+}
+
+.js-top-desti-prev_active3,
+.js-top-desti-next_active3 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.js-top-desti-prev_active4,
+.js-top-desti-next_active4 {
+  position: absolute;
+  top: 50%;
+  z-index: 10;
+}
+
+.js-top-desti-prev_active3 {
+  left: -55px;
+}
+
+.js-top-desti-next_active3 {
+  right: -55px;
+}
+.js-top-desti-prev_active4 {
+  left: -55px;
+}
+
+.js-top-desti-next_active4 {
+  right: -55px;
+}
+.coursebutton::after {
+  content: "";
+  width: 0;
+  height: 2px;
+  display: block;
+  left: 0;
+  background: #d3aa5c;
+  transition: width 0.3s ease;
+}
+
+.coursebutton:hover::after {
+  width: 100%;
+}
+
+.js-top-desti-prev_active5,
+.js-top-desti-next_active5 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.js-top-desti-prev_active5 {
+  left: -55px;
+}
+
+.js-top-desti-next_active5 {
+  right: -55px;
+}
+.js-top-desti-prev_active6,
+.js-top-desti-next_active6 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.js-top-desti-prev_active6 {
+  left: -55px;
+}
+
+.js-top-desti-next_active6 {
+  right: -55px;
+}
+
+.js-top-desti-prev_active7,
+.js-top-desti-next_active7 {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+.js-top-desti-prev_active7 {
+  left: -55px;
+}
+
+.js-top-desti-next_active7 {
+  right: -55px;
+}

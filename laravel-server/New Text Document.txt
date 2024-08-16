@@ -1,6 +1,0 @@
-docker exec -it laravel-sail-mysql-1 bash
-mysql -u sail -p
-password
-
-
-docker exec -it laravel-sail-redis-1 redis-cli

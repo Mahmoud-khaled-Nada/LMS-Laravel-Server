@@ -1,0 +1,25 @@
+.LessonScroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+.LessonScroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+.LessonScroll::-webkit-scrollbar-thumb {
+  background: #00d8e3;
+  border-radius: 1px;
+}
+
+/* Handle on hover */
+.LessonScroll::-webkit-scrollbar-thumb:hover {
+  background: #000927;
+}
+
+.video-sec {
+  position: relative;
+  height: 110px;
+
+}

@@ -1,0 +1,27 @@
+.animat:hover{ 
+    position: relative;
+    animation-name: hover;
+    animation-duration: .8s;
+    animation-iteration-count: infinite; 
+    cursor: pointer; 
+  }
+
+  @keyframes hover {
+      0%   { left:0px; top:-8px;}
+
+      50% { left:0px; top:0px;}
+     
+      100% { left:0px; top:-8px;}
+    }
+
+    .custom-pagination .Mui-selected{
+      color:  #ffff;
+      background-image: linear-gradient(#00D8E3, #00D8E3, #00D8E3);
+    }
+   
+    
+    .custom-pagination .MuiPaginationItem-root:hover {
+      background-color: #00D8E3;
+      color:  #ffff;
+    }
+    
