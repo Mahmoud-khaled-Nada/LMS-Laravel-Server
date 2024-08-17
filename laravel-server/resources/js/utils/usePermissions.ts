@@ -1,5 +1,5 @@
-import { User } from "@/types";
+import { User } from '@/types';
 
-export const can = (user: User, permission : string[]) => {
-    // return user.permissions.includes(permission);
-  };
+export const can = (user: User, permission: string[]) => {
+  // return user.permissions.includes(permission);
+};

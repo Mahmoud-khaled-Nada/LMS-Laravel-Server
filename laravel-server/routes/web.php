@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Admin\AdminController;
 use App\Http\Controllers\Dashboard\Admin\AuthController;
 use App\Http\Controllers\Dashboard\CategoryController;
+use Illuminate\Support\Facades\Cache;
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/login', fn() => Inertia::render('auth/Login'));
@@ -69,3 +70,11 @@ Route::middleware('auth')->group(static function (): void {
             // Route::post('delete/{ulid}', 'destroy');
         });
 });
+
+
+// Route::get('/redis', static function (): void {
+//     Cache::store('redis')->put('nada', 'test is here', 600);
+//     $value = Cache::store('redis')->get('nada');
+//     echo $value;    
+// });
+

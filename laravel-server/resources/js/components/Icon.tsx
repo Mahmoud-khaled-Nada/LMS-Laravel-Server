@@ -10,8 +10,16 @@ interface IconsType {
 
 // Example Icons object (replace with your actual icons)
 const Icons: IconsType = {
-  home: (props) => <svg {...props}><path d="..." /></svg>,
-  user: (props) => <svg {...props}><path d="..." /></svg>,
+  home: (props) => (
+    <svg {...props}>
+      <path d="..." />
+    </svg>
+  ),
+  user: (props) => (
+    <svg {...props}>
+      <path d="..." />
+    </svg>
+  ),
   // Add other icons here
 };
 

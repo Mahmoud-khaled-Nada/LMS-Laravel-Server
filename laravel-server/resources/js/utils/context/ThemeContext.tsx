@@ -13,9 +13,7 @@ function usePrevious<T>(value: T): T | undefined {
 function useStorageTheme(key: string): [string, React.Dispatch<React.SetStateAction<string>>] {
   const userPreference = !!window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
-  const [theme, setTheme] = useState<string>(
-    localStorage.getItem(key) || (userPreference ? 'dark' : 'light')
-  );
+  const [theme, setTheme] = useState<string>(localStorage.getItem(key) || (userPreference ? 'dark' : 'light'));
 
   // Update stored theme
   useEffect(() => {

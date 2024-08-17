@@ -15,14 +15,12 @@ docker exec -it laravel-sail-redis-1 redis-cli
 1 docker stop $(docker ps -q)
 2 docker rm $(docker ps -a -q)
 
-
 # Sail commands
 
-==>  ./vendor/bin/sail build 
-==>  ./vendor/bin/sail build --no-cache
+==> ./vendor/bin/sail build
+==> ./vendor/bin/sail build --no-cache
 
-==>  ./vendor/bin/sail up 
-==>  ./vendor/bin/sail up -d
+==> ./vendor/bin/sail up
+==> ./vendor/bin/sail up -d
 
-==>  ./vendor/bin/sail down
-
+==> ./vendor/bin/sail down

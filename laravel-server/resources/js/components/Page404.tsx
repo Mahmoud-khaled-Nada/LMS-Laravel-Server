@@ -1,5 +1,4 @@
-
-import { MdOutlineDoNotDisturb } from "react-icons/md";
+import { MdOutlineDoNotDisturb } from 'react-icons/md';
 function Page404() {
   return (
     <div className="flex flex-col items-center">
@@ -13,7 +12,7 @@ function Page404() {
         .
       </p>
     </div>
-  )
+  );
 }
 
-export default Page404
+export default Page404;

@@ -19,7 +19,7 @@ export const SidebarProvider: React.FC<SidebarProviderProps> = ({ children }) =>
   const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 
   function toggleSidebar() {
-    setIsSidebarOpen(prevState => !prevState);
+    setIsSidebarOpen((prevState) => !prevState);
   }
 
   function closeSidebar() {

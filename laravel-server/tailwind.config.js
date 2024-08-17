@@ -10,7 +10,7 @@ export default {
     './resources/views/**/*.blade.php',
     './resources/js/**/*.tsx',
   ],
-  darkMode: 'class',
+  darkMode: 'media',
   theme: {
     extend: {
       fontFamily: {
