@@ -5,7 +5,7 @@ namespace App\Traits\Dashboard;
 trait HandleResponses
 {
 
-    public function respondWithError($message = null, $data = null, $status = 400): void
+    public function respondWithError($message = null, $data = null, $status = 400)
     {
         redirect()->back()->with([
             'type' => 'error',
@@ -16,7 +16,7 @@ trait HandleResponses
 
 
 
-    public function respondWithSuccess($message = null, $data = null, $status = 200): void
+    public function respondWithSuccess($message = null, $data = null, $status = 200)
     {
         redirect()->back()->with([
             'type' => 'success',
@@ -25,14 +25,14 @@ trait HandleResponses
         ], $status);
     }
 
-    public function respondWithValidationError($errors): void
+    public function respondWithValidationError($errors)
     {
         redirect()->back()->with([
             'errors' => $errors
         ], 422);
     }
 
-    public function respondWithNotFound($message): void
+    public function respondWithNotFound($message)
     {
         redirect()->back()->with([
             'errors' => $message

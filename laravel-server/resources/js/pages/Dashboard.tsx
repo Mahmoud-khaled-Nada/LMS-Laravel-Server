@@ -96,7 +96,7 @@ function Dashboard() {
             </tr>
           </TableHeader>
           <TableBody>
-            {data.map((user, i) => (
+            {data.map((user: any, i) => (
               <TableRow key={i}>
                 <TableCell>
                   <div className="flex items-center text-sm">
@@ -118,10 +118,10 @@ function Dashboard() {
                 </TableCell>
                 <TableCell>
                   <div className="flex items-center space-x-4">
-                    <Button layout="link" size="icon" aria-label="Edit">
+                    <Button layout="link"  aria-label="Edit">
                       <MdEdit className="w-5 h-5" aria-hidden="true" />
                     </Button>
-                    <Button layout="link" size="icon" aria-label="Delete">
+                    <Button layout="link"  aria-label="Delete">
                       <BiTrash className="w-5 h-5" aria-hidden="true" />
                     </Button>
                   </div>

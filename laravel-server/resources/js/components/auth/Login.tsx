@@ -1,12 +1,12 @@
 import { FaTwitter, FaGithub } from 'react-icons/fa';
-import { Label, Input, Button } from '@windmill/react-ui';
+import { Label, Button } from '@windmill/react-ui';
 import { Link, router, useForm } from '@inertiajs/react';
-import { FormContainer } from '../ui/forms/FormContainer';
 import { FormEventHandler } from 'react';
 import { useTranslation } from 'react-i18next';
 import InputField from '../ui/input/InputField';
 import { toast } from 'react-toastify';
 import { Spinners } from '../ui/icons/Spinners';
+import FormContainer from '../ui/forms/FormContainer';
 
 type LoginParams = {
   email: string;

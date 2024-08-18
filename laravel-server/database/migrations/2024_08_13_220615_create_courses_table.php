@@ -20,10 +20,13 @@ return new class extends Migration
                 ->constrained('categories')
                 ->cascadeOnDelete();
             $table->string('name', 200)->unique();
-            $table->string('image');
             $table->decimal('price', 10, 2);
             $table->text('description');
             $table->text('requirements');
+            $table->unsignedInteger('hours')->default(1);
+            $table->enum('type', ['online','onsite'])->default('online');
+            $table->string('photo');
+            $table->string('video');
             $table->smallInteger('average_rate')->default(0);
             $table->timestamps();
         });

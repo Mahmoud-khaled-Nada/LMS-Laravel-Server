@@ -4,7 +4,6 @@ namespace App\Services\Student;
 
 use App\Models\Student;
 use App\Traits\Api\HandleResponses;
-use App\Utils\Transformers\AdminTransformer;
 use Illuminate\Support\Facades\Auth;
 
 final class AuthServices
@@ -13,9 +12,8 @@ final class AuthServices
 
     private $items;
 
-    public function __construct(
-        protected AdminTransformer $adminTransformer,
-    ) {
+    public function __construct()
+    {
         $this->items = collect([]);
     }
 

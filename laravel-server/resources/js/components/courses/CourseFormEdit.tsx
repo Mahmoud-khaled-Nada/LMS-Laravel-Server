@@ -3,25 +3,26 @@ import InputField from '../ui/input/InputField';
 import { router, useForm, usePage } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
 import { FormEventHandler } from 'react';
+import SingleSelect from '../ui/input/SingleSelect';
 import { toast } from 'react-toastify';
 import { SpinnerButton } from '../ui/buttons/SpinnerButton';
 import { AdminParams } from '@/types';
-import SingleSelect from '../ui/input/SingleSelect';
 import FormContainer from '../ui/forms/FormContainer';
 
-function AdminFormCreate() {
+function CourseFormEdit({ adminData }: any) {
   const { t } = useTranslation();
   const { roles } = usePage().props as any;
-  const { data, setData, post, processing, errors, reset } = useForm<AdminParams>();
+  const { data, setData, put, processing, errors, reset } = useForm<AdminParams>(adminData);
 
   const submit: FormEventHandler = (e) => {
+    if (!adminData.id) return;
     e.preventDefault();
-    post('/admins/store', {
+    put(`/admins/update/${adminData.id}`, {
       onSuccess: () => {
+        toast.success('Admin updated successfully');
         router.get('/admins');
-        toast.success('Admin created successfully');
       },
-      onError: () => toast.error('Error creating admin'),
+      onError: () => toast.error('Error updating admin'),
       onFinish: () => reset('name', 'email', 'password', 'role'),
     });
   };
@@ -58,7 +59,7 @@ function AdminFormCreate() {
           <SingleSelect
             options={roles}
             placeholder="Select an option..."
-            onChange={(value) => setData('role', value)}
+            onChange={(value) => setData('role', value.toString())}
           />
         </Label>
         <Label className="mt-4">
@@ -74,10 +75,10 @@ function AdminFormCreate() {
         </Label>
       </div>
       <div className="flex justify-end items-center m-6 gap-3 ">
-        <SpinnerButton isLoading={processing} disabled={!data.name || processing} route="/admins" />
+        <SpinnerButton isLoading={processing} disabled={!data.name || processing} route="/courses" />
       </div>
     </FormContainer>
   );
 }
 
-export default AdminFormCreate;
+export default CourseFormEdit;

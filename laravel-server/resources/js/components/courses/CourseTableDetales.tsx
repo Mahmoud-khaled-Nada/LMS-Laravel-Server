@@ -7,26 +7,27 @@ import { useState } from 'react';
 import { router, useForm } from '@inertiajs/react';
 import { toast } from 'react-toastify';
 
-interface CategoryProps {
-  categories: any[];
+interface AdminTableDetailsProps {
+  admins: any[];
 }
 
-export const CategoryTableDetales: React.FC<CategoryProps> = ({ categories }) => {
+export const CourseTableDetales: React.FC<AdminTableDetailsProps> = ({ admins }) => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [categoryId, setCategoryId] = useState<number | null>(null);
+  const [adminId, setAdminId] = useState<number | null>(null);
 
   const { post, processing, errors } = useForm();
 
-  const deleteCategory = () => {
-    if (!categoryId) return;
+  const deleteAdmin = () => {
+    if (!adminId) return;
 
-    post(`/categories/delete/${categoryId}`, {
-      onSuccess: ({ props }) => {
-        toast.success(t('Category deleted successfully'));
+    post(`/admins/delete/${adminId}`, {
+      onSuccess: (res) => {
+        console.log(res);
+        toast.success(t('Admin deleted successfully'));
         setIsModalOpen(false);
       },
-      onError: () => toast.error(t('Error deleting Category')),
+      onError: () => toast.error(t('Error deleting admin')),
       onFinish: () => setIsModalOpen(false),
     });
   };
@@ -37,25 +38,31 @@ export const CategoryTableDetales: React.FC<CategoryProps> = ({ categories }) =>
         <TableHeader>
           <tr>
             <TableCell>{t('name')}</TableCell>
+            <TableCell>{t('email')}</TableCell>
+            <TableCell>{t('roles')}</TableCell>
+            <TableCell>{t('created_at')}</TableCell>
             <TableCell>{t('actions')}</TableCell>
           </tr>
         </TableHeader>
         <TableBody>
-          {categories.map((row: any, index: number) => (
+          {admins.map((row: any, index: number) => (
             <TableRow key={index}>
               <TableCell>
                 <Badge>{row.name}</Badge>
               </TableCell>
+              <TableCell>{row.email}</TableCell>
+              <TableCell>{row.role}</TableCell>
+              <TableCell>{row.created_at}</TableCell>
               <TableCell>
                 <div className="flex items-center space-x-4">
-                  <Button onClick={() => router.get(`/categories/edit/${row.id}`)} layout="link">
+                  <Button onClick={() => router.get(`/admins/edit/${row.id}`)} layout="link">
                     <MdEdit className="w-5 h-5" />
                   </Button>
                   <Button
                     layout="link"
                     onClick={() => {
                       setIsModalOpen(true);
-                      setCategoryId(row.id);
+                      setAdminId(row.id);
                     }}
                   >
                     <BiTrash className="w-5 h-5" />
@@ -67,14 +74,14 @@ export const CategoryTableDetales: React.FC<CategoryProps> = ({ categories }) =>
         </TableBody>
       </Table>
       <AcceptModal
-        title={t('Delete Category')}
+        title={t('Delete Course')}
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
-        acceptAction={deleteCategory}
+        acceptAction={deleteAdmin}
         isLoading={processing}
-        disabled={!categoryId}
+        disabled={!adminId}
       >
-        {t('Are you sure you want to delete this category?')}
+        {t('Are you sure you want to delete this course?')}
       </AcceptModal>
     </TableContainer>
   );

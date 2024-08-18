@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Utils\Constants\FileStoreConstant;
+use App\Utils\Helpers\FileStorageHelper;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,15 +15,47 @@ class Course extends Model
         'user_id',
         'category_id',
         'name',
-        'image',
         'price',
+        'hours',
+        'type',
+        'photo',
+        'video',
+        'average_rate',
         'description',
         'requirements',
-        'average_rate',
     ];
 
+    //TODO: Implement Attributes Functionality
 
+    public function setPhotoAttribute($photo): void
+    {
+        $directory = FileStoreConstant::COURSE_COVERS_PATH->value;
+        $path = FileStorageHelper::storeFile($photo, $directory);
+        $this->attributes['photo'] = $path;
+    }
 
+    public function setVideoAttribute($video): void
+    {
+        $directory = FileStoreConstant::COURSE_VIDEO_PATH->value;
+        $path = FileStorageHelper::storeFile($video, $directory);
+        $this->attributes['video'] = $path;
+    }
+
+    public function getPhotoAttribute(): string
+    {
+        return $this->attributes['photo']
+            ? asset('storage/' . $this->attributes['photo'])
+            : null;
+    }
+
+    public function getVideoAttribute(): string
+    {
+        return $this->attributes['video']
+            ? asset('storage/' . $this->attributes['video'])
+            : null;
+    }
+
+    //TODO: Implement Relationship Functionality
     public function instructor()
     {
         return $this->belongsTo(User::class);

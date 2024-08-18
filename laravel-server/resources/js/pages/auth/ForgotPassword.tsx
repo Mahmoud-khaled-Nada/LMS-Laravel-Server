@@ -1,3 +1,4 @@
+
 import ForgotPasswordForm from '@/components/auth/ForgotPassword';
 import ImageLight from '@/assets/images/forgot-password-office.jpeg';
 import ImageDark from '@/assets/images/forgot-password-office-dark.jpeg';

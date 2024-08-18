@@ -24,3 +24,11 @@ docker exec -it laravel-sail-redis-1 redis-cli
 ==> ./vendor/bin/sail up -d
 
 ==> ./vendor/bin/sail down
+
+# Redis Exammple#
+
+<!-- Route::get('/redis', static function (): void {
+Cache::store('redis')->put('nada', 'test is here', 600);
+$value = Cache::store('redis')->get('nada');
+echo $value;  
+ }); -->

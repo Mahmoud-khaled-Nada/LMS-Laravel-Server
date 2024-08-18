@@ -1,5 +1,4 @@
 import { Label } from '@windmill/react-ui';
-import { FormContainer } from '../ui/forms/FormContainer';
 import InputField from '../ui/input/InputField';
 import { router, useForm, usePage } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
@@ -8,6 +7,7 @@ import SingleSelect from '../ui/input/SingleSelect';
 import { toast } from 'react-toastify';
 import { SpinnerButton } from '../ui/buttons/SpinnerButton';
 import { AdminParams } from '@/types';
+import FormContainer from '../ui/forms/FormContainer';
 
 function AdminFormEdit({ adminData }: any) {
   const { t } = useTranslation();

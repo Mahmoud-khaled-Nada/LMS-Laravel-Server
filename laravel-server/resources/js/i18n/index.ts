@@ -14,7 +14,8 @@ const resources = {
 };
 
 // Use the locale passed from Laravel
-const locale = window.Laravel.locale || 'en';
+// const locale = window.Laravel.locale || 'en';
+const locale = 'en';
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next

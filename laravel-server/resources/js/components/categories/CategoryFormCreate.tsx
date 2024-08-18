@@ -1,5 +1,4 @@
 import { Label } from '@windmill/react-ui';
-import { FormContainer } from '../ui/forms/FormContainer';
 import InputField from '../ui/input/InputField';
 import { router, useForm } from '@inertiajs/react';
 import { useTranslation } from 'react-i18next';
@@ -7,6 +6,7 @@ import { FormEventHandler } from 'react';
 import { toast } from 'react-toastify';
 import { SpinnerButton } from '../ui/buttons/SpinnerButton';
 import { CategoryParams } from '@/types';
+import FormContainer from '../ui/forms/FormContainer';
 
 function CategoryFormCreate() {
   const { t } = useTranslation();

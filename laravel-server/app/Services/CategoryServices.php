@@ -3,29 +3,30 @@
 namespace App\Services;
 
 use App\Models\Category;
+use App\Utils\Transformers\CategoryTransformer;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Collection;
 
 final class CategoryServices
 {
-    private $category;
+    private $items;
 
-    public function __construct()
-    {
-        $this->category = collect([]);
+    public function __construct(
+        protected CategoryTransformer $categoryTransformer
+    ) {
+        $this->items = collect([]);
     }
 
-    public function get(): Collection
+    public function get(): array
     {
-        if ($this->category->isEmpty()) {
-            $this->category = Category::all();
+        if ($this->items->isEmpty()) {
+            $this->items = Category::all();
         }
-        return $this->category;
+        return $this->categoryTransformer->transformCollection($this->items);
     }
 
     public function findById(string $id): ?Model
     {
-        return $this->get()->firstWhere('id', $id);
+        return Category::find($id);
     }
 
     public function add(array $data): void

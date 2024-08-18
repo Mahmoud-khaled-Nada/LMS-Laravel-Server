@@ -1,11 +1,9 @@
 import { routes } from '@/utils/constants/sidebar';
-import { Button } from '@windmill/react-ui';
 import SidebarSubmenu from './SidebarSubmenu';
 import { Link, usePage } from '@inertiajs/react';
-import { Route } from '@/types';
+import {  Route } from '@/types';
 
 function SidebarContent() {
-  // Extract the current URL from the `usePage` hook
   const { url: location } = usePage();
 
   return (
@@ -22,9 +20,9 @@ function SidebarContent() {
               <Link
                 href={route.path || '/'}
                 className={`
-                                    inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ${
-                                      location === route.path ? 'text-gray-800 dark:text-gray-100' : ''
-                                    }`}
+                  inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200 ${
+                    location === route.path ? 'text-gray-800 dark:text-gray-100' : ''
+                  }`}
               >
                 <span
                   className={`${
@@ -40,14 +38,6 @@ function SidebarContent() {
           )
         )}
       </ul>
-      <div className="px-6 my-6">
-        <Button>
-          Create account
-          <span className="ml-2" aria-hidden="true">
-            +
-          </span>
-        </Button>
-      </div>
     </div>
   );
 }

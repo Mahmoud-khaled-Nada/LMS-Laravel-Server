@@ -2,10 +2,11 @@
 
 use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Dashboard\Admin\AdminController;
-use App\Http\Controllers\Dashboard\Admin\AuthController;
+use App\Http\Controllers\AuthController as TestControllerAdmin;
+use App\Http\Controllers\Dashboard\CourseController;
 use App\Http\Controllers\Dashboard\CategoryController;
-use Illuminate\Support\Facades\Cache;
+use App\Http\Controllers\Dashboard\Admin\AuthController;
+
 
 Route::group(['prefix' => 'auth'], function () {
     Route::get('/login', fn() => Inertia::render('auth/Login'));
@@ -33,7 +34,9 @@ Route::middleware('auth')->group(static function (): void {
 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::controller(AdminController::class)
+    //
+    // Route::controller(AdminController::class)
+    Route::controller(TestControllerAdmin::class)
         ->prefix('admins')
         ->as('admins:')
         ->group(static function (): void {
@@ -58,23 +61,15 @@ Route::middleware('auth')->group(static function (): void {
         });
 
 
-    Route::controller(CategoryController::class)
-        ->prefix('categories')
-        ->as('categories:')
+    Route::controller(CourseController::class)
+        ->prefix('courses')
+        ->as('courses:')
         ->group(static function (): void {
-            // Route::get('',  'index');
-            // Route::get('create', 'create');
-            // Route::post('store', 'store');
+            Route::get('',  'index');
+            Route::get('create', 'create');
+            Route::post('store', 'store');
             // Route::get('edit/{ulid}', 'edit');
             // Route::put('update/{ulid}', 'update');
             // Route::post('delete/{ulid}', 'destroy');
         });
 });
-
-
-// Route::get('/redis', static function (): void {
-//     Cache::store('redis')->put('nada', 'test is here', 600);
-//     $value = Cache::store('redis')->get('nada');
-//     echo $value;    
-// });
-
