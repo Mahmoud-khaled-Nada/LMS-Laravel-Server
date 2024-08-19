@@ -1,1 +1,0 @@
-// export const formatDay = (day: string) => moment(day).format("YYYY-MM-DD");
