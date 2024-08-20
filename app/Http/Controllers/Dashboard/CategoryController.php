@@ -24,19 +24,19 @@ final class CategoryController extends DashboardController
 
     public function create(): Response
     {
+        echo phpinfo();
         return Inertia::render('categories/Create');
     }
 
     public function store(Request $request)
     {
+        
         $data = $request->validate(['category' => 'required|string|min:3|max:250']);
         try {
             $this->service->create($data);
-            return $this->respondWithSuccess([
-                'message' => 'Category created successfully',
-            ]);
-        } catch (\Exception $ex) {
-            return $this->respondWithError('error', 'Error creating category');
+            return to_route('categories', ['message' => 'Category created successfully']);
+        } catch (\Exception $e) {
+            return back()->withError($e->getMessage());
         }
     }
 
