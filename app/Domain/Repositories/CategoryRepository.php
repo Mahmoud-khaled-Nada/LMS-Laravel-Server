@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Infra\Eloquent;
+namespace App\Domain\Repositories;
 
 use App\Models\Category;
 use App\Utils\Transformers\CategoryTransformer;
-use Illuminate\Pagination\LengthAwarePaginator;
-use App\Domain\Repositories\CategoryRepositoryInterface;
 
-final class CategoryRepository implements CategoryRepositoryInterface
+final class CategoryRepository
 {
 
     private $items;

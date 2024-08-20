@@ -73,6 +73,3 @@ Route::middleware('auth')->group(static function (): void {
             // Route::post('delete/{ulid}', 'destroy');
         });
 });
-
-
-// test git is push

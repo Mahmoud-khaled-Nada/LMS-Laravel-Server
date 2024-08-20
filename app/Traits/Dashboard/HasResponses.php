@@ -2,7 +2,7 @@
 
 namespace App\Traits\Dashboard;
 
-trait HandleResponses
+trait HasResponses
 {
 
     public function respondWithError($message = null, $data = null, $status = 400)

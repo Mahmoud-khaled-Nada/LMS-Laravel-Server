@@ -2,16 +2,16 @@
 
 namespace App\Domain\Services;
 
+use App\Domain\Repositories\CategoryRepository;
 use App\Models\Category;
-use App\Domain\Repositories\CategoryRepositoryInterface;
 use App\Exceptions\CategoryException;
-use Illuminate\Pagination\LengthAwarePaginator;
+
 
 final class CategoryService
 {
 
     public function __construct(
-        protected CategoryRepositoryInterface $repository
+        protected CategoryRepository $repository
     ) {}
 
     public function getAll(): array

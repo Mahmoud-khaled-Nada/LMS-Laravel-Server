@@ -1,12 +1,11 @@
 <?php
 
-namespace App\Infra\Eloquent;
+namespace App\Domain\Repositories;
 
 use App\Models\User as Admin;
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Domain\Repositories\AdminRepositoryInterface;
 
-final class AdminRepository implements AdminRepositoryInterface
+final class AdminRepository
 {
 
     private $items;

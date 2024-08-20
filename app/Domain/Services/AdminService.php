@@ -2,16 +2,17 @@
 
 namespace App\Domain\Services;
 
+use App\Domain\Repositories\AdminRepository;
 use App\Models\User as Admin;
 use App\Exceptions\AdminException;
+
 use Illuminate\Pagination\LengthAwarePaginator;
-use App\Domain\Repositories\AdminRepositoryInterface;
 
 final class AdminService
 {
 
     public function __construct(
-        protected AdminRepositoryInterface $repository
+        protected AdminRepository $repository
     ) {}
 
 

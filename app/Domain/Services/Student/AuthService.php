@@ -1,30 +1,31 @@
 <?php
 
-namespace App\Services\Student;
+namespace App\Domain\Services\Student;
 
-use App\Models\Student;
-use App\Traits\Api\HandleResponses;
+use App\Domain\Repositories\StudentRepository;
+use App\Traits\Api\HasResponses;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Student;
 
-final class AuthServices
+final class AuthService
 {
-    use HandleResponses;
+    use HasResponses;
 
-    private $items;
+    public function __construct(
+        protected StudentRepository $repository
+    ) {}
 
-    public function __construct()
+    public function create(array $data): Student
     {
-        $this->items = collect([]);
+        return $this->repository->save($data);
     }
 
-
-    public function create(array $data): void
+    public function login(object $request): ?string
     {
-        Student::create($data);
-    }
+        $input = $request->input('email') ?? $request->input('phone');
+        $fieldType = $request->input('email') ? 'email' : 'phone';
+        $credentials = [$fieldType => $input, 'password' => $request->input('password')];
 
-    public function login(array $credentials)
-    {
         $token = Auth::guard('api:students')->attempt($credentials);
         if (!$token)
             return $this->Error("Email address or password is invalid", 422);

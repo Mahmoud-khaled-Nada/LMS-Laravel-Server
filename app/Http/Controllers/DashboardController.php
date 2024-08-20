@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Traits\Dashboard\HandleResponses;
+use App\Traits\Dashboard\HasResponses;
 
 
 abstract class DashboardController extends Controller
 {
-    use HandleResponses;
+    use HasResponses;
 }

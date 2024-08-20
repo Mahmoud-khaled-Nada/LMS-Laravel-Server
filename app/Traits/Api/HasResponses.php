@@ -5,7 +5,7 @@ namespace App\Traits\Api;
 use Exception;
 use Illuminate\Http\JsonResponse;
 
-trait HandleResponses
+trait HasResponses
 {
 
     public function Success($data = null, $message = '', $code = 200): JsonResponse
