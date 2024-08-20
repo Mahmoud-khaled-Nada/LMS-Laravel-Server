@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Dashboard;
+namespace App\Infra\Traits\Dashboard;
 
 trait HasResponses
 {

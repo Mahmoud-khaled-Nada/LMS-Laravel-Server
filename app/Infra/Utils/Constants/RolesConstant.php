@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Utils\Constants;
+namespace App\Infra\Utils\Constants;
 
 
 class RolesConstant

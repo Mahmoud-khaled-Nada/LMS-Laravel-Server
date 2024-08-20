@@ -3,7 +3,7 @@
 namespace App\Domain\Services\Student;
 
 use App\Domain\Repositories\StudentRepository;
-use App\Traits\Api\HasResponses;
+use App\Infra\Traits\Api\HasResponses;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Student;
 

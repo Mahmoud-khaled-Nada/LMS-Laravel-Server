@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Utils\Constants;
+namespace App\Infra\Utils\Constants;
 
 enum FileStoreConstant: string
 {

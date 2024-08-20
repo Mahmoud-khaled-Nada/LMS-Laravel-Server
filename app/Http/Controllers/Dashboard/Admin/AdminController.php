@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers\Dashboard\Admin;
 
-use App\Domain\Services\AdminService;
 use App\Models\User;
 use Inertia\Inertia;
 use Inertia\Response;
-use App\Services\AdminServices;
+use App\Domain\Services\AdminService;
 use Illuminate\Http\RedirectResponse;
-use App\Utils\Constants\RolesConstant;
+use App\Infra\Utils\Constants\RolesConstant;
 use App\Http\Controllers\DashboardController;
 use App\Http\Requests\Dashboard\AdminCreateRequest;
 use App\Http\Requests\Dashboard\AdminUpdateRequest;

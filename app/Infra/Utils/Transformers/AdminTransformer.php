@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils\Transformers;
+namespace App\Infra\Utils\Transformers;
 
 use App\Models\User;
 use Illuminate\Support\Collection;

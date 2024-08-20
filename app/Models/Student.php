@@ -2,8 +2,8 @@
 
 namespace App\Models;
 
-use App\Utils\Constants\FileStoreConstant;
-use App\Utils\Helpers\FileStorageHelper;
+use App\Infra\Utils\Constants\FileStoreConstant;
+use App\Infra\Utils\Helpers\FileStorageHelper;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;

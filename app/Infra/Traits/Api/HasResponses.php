@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits\Api;
+namespace App\Infra\Traits\Api;
 
 use Exception;
 use Illuminate\Http\JsonResponse;
