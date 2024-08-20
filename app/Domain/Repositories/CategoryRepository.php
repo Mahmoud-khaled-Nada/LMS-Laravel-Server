@@ -2,8 +2,8 @@
 
 namespace App\Domain\Repositories;
 
+use App\Infra\Utils\Transformers\CategoryTransformer;
 use App\Models\Category;
-use App\Utils\Transformers\CategoryTransformer;
 
 final class CategoryRepository
 {
